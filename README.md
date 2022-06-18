@@ -1,4 +1,8 @@
-# tpegame
+tpegame
+=======
+
+.. image:: https://img.shields.io/badge/python-3.10-blue
+    :alt: Python-3.10
 
 This is a project for the TPE game submission.
 
