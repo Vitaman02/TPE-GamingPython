@@ -1,0 +1,24 @@
+name: coverage
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Generate coverage report
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install requirements
+      run: |
+        pip install -e .
+        pip install -e .[dev]
+        pip install -e .[test]
+    - name: Run tests and collect coverage
+      run: pytest --cov .
+    - name: Upload coverage reports to Codecov
+      run: |
+        # Replace `linux` below with the appropriate OS
+        # Options are `alpine`, `linux`, `macos`, `windows`
+        curl -Os https://uploader.codecov.io/latest/linux/codecov
+        chmod +x codecov
+        ./codecov -t ${CODECOV_TOKEN}
