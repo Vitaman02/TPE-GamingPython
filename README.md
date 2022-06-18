@@ -1,8 +1,9 @@
 tpegame
 =======
 
-.. image:: https://img.shields.io/badge/python-3.10-blue
-    :alt: Python-3.10
+![python](https://img.shields.io/badge/python-3.10-blue)
+
+[![tests](https://github.com/Vitaman02/TPE-GamingPython/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/Vitaman02/TPE-GamingPython/actions/workflows/python-app.yml)
 
 This is a project for the TPE game submission.
 
