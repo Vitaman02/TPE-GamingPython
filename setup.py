@@ -1,4 +1,5 @@
 import os
+
 from setuptools import find_packages, setup
 
 cwd = os.path.abspath(os.path.dirname(__file__))
@@ -18,6 +19,7 @@ requirements_dev = [
     "pre-commit==2.19.0",
     "black==22.3.0",
     "isort==5.10.1",
+    "flake8==4.0.1",
 ]
 
 requirements_test = [
@@ -27,7 +29,7 @@ requirements_test = [
 
 extras = {
     "dev": requirements_dev,
-    "test": requirements_test
+    "test": requirements_test,
 }
 
 # Run setup
@@ -59,5 +61,5 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
-    ]
+    ],
 )
