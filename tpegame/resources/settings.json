@@ -1,7 +1,9 @@
 {
-    "background": "background.jpg",
     "fps": 30,
-    "height": 675,
+    "width": 1500,
+    "height": 850,
     "title": "TPE Duck Gaming",
-    "width": 900
+    "background": "background.jpg",
+    "duck_left": "duck_left_new.png",
+    "duck_right": "duck_right_new.png"
 }

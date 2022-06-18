@@ -31,4 +31,6 @@ def load_settings() -> dict[str, str | int]:
 
     # Load background image path
     settings["background"] = os.path.join(resources, "sprites", settings["background"])
+    settings["duck_right"] = os.path.join(resources, "sprites", settings["duck_right"])
+    settings["duck_left"] = os.path.join(resources, "sprites", settings["duck_left"])
     return settings

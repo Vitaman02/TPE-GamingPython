@@ -4,7 +4,7 @@ repos:
       hooks:
           - id: pretty-format-json
             name: pretty format json
-            args: ["--autofix", "--indent", "4"]
+            args: ["--autofix", "--indent", "4", "--no-sort-keys"]
           - id: check-json
             name: check json
             types: [json]
