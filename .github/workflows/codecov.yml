@@ -14,7 +14,7 @@ jobs:
         pip install -e .[dev]
         pip install -e .[test]
     - name: Run tests and collect coverage
-      run: pytest --cov .
+      run: pytest --cov-report html --cov=tpegame tests/
     - name: Upload coverage reports to Codecov
       run: |
         # Replace `linux` below with the appropriate OS
