@@ -5,5 +5,6 @@
     "title": "TPE Duck Gaming",
     "background": "background.jpg",
     "duck_left": "duck_left_new.png",
-    "duck_right": "duck_right_new.png"
+    "duck_right": "duck_right_new.png",
+    "background_music": "background_music.mp3"
 }

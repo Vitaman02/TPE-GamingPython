@@ -97,11 +97,26 @@ class Game:
         # TODO handle duck click
         return
 
+    def start_background_music(self) -> None:
+        """Starts the background song"""
+
+        pygame.mixer.init()
+        pygame.mixer.music.load(self.settings["background_music"])
+        pygame.mixer.music.play(-1)
+
+    def stop_background_music(self) -> None:
+        """Stop playing background music"""
+
+        pygame.mixer.music.stop()
+
     def start(self) -> None:  # pragma: no cover
         """Starts the game loop"""
 
         # Set start time
         self.start_time = time.time()
+
+        # Setup background music
+        self.start_background_music()
 
         # Create clock to run frames on specific framerate
         clock = pygame.time.Clock()
