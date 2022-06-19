@@ -45,25 +45,28 @@ class Game:
         self.WIN.blit(self.BACKGROUND, (0, 0))
 
         self.start_time = None
-        self.duck_width = 50
-        self.duck_height = 50
+        self.duck_width = 150
+        self.duck_height = 150
         self.ducks = self.setup_ducks()
 
         # Set window title
         title = self.settings["title"] if not title else title
         pygame.display.set_caption(title)
 
-    def setup_ducks(self, duck_amount: int = 2) -> list:
+    def setup_ducks(self, duck_amount: int = 10) -> list:
         """Sets up duck sprite on the game window"""
 
         # Set ducks per row
+        # ? Can be optimized, spaggheti
         rows = ["duck_right", "duck_left"]
+        increments = [self.duck_width, -self.duck_width]
         positions = [
-            (0, 0),
-            (self.WIDTH - self.duck_width, self.HEIGHT - self.duck_height),
+            (-self.duck_width, self.duck_height),
+            (self.WIDTH, self.HEIGHT - self.duck_height * 2),
         ]
         ducks = []
         for index, row in enumerate(rows):
+            increment = increments[index]
             for _ in range(duck_amount):
                 # Create Duck sprite
                 duck = Duck(
@@ -72,12 +75,11 @@ class Game:
                     self.duck_height,
                 ).scaled
 
-                increment = self.duck_width
-
                 # Draw duck on window
-                # TODO calculate new position for each duck
-                position = positions[index][0] + increment, positions[index][1]
+                position = positions[index][0] + increments[index], positions[index][1]
                 self.WIN.blit(duck, position)
+                increments[index] += increment
+                ducks.append(duck)
 
         return ducks
 
