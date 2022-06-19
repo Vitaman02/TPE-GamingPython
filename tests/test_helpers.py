@@ -19,6 +19,7 @@ class HelpersTest(TestCase):
         "background": "mock background",
         "duck_left": "mock duck left",
         "duck_right": "mock duck right",
+        "background_music": "mock background music",
     }
 
     ANNOTATIONS = {
