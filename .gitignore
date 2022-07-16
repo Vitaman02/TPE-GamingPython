@@ -5,3 +5,7 @@ __pycache__/
 env-tpe/
 .env
 .coverage
+
+# Logging
+tpegame/logs/*
+*.log

@@ -23,6 +23,19 @@ def mock_set_caption(*args, **kwargs):
     return
 
 
+class MockLogger:
+    def __init__(self, *args, **kwargs):
+        self.message = None
+        return
+
+    def __call__(self, *args, **kwargs):
+        self.log(*args, **kwargs)
+        return
+
+    def log(self, message: str, *args, **kwargs):
+        self.message = message
+
+
 class GameTest(TestCase):
     MOCK_PATH = "./path/to/images/"
     MOCK_GAME_TITLE = "Mock Game"
@@ -34,7 +47,8 @@ class GameTest(TestCase):
             mock.patch("pygame.display.set_mode", mock_set_mode),
             mock.patch("pygame.display.set_caption", mock_set_caption),
         ):
-            cls.game = Game(*MOCK_GAME_SIZE, cls.MOCK_GAME_TITLE)
+            with mock.patch("tpegame.game.GameLogger", MockLogger):
+                cls.game = Game(*MOCK_GAME_SIZE, cls.MOCK_GAME_TITLE)
 
     def test_game_handle_event(self):
         """Test Game initialization"""
