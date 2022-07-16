@@ -14,6 +14,7 @@ from tpegame import helpers
 from tpegame.exceptions import PygameQuit
 from tpegame.gui.background import Background
 from tpegame.gui.duck import Duck
+from tpegame.logger import GameLogger
 
 
 class Game:
@@ -30,7 +31,9 @@ class Game:
         start_time (float): Time the game started at.
     """
 
-    def __init__(self, width: int = None, height: int = None, title: str = None):
+    def __init__(
+        self, width: int = None, height: int = None, title: str = None, **kwargs
+    ):
         self.settings = helpers.load_settings()
 
         # Set constants
@@ -53,11 +56,17 @@ class Game:
         title = self.settings["title"] if not title else title
         pygame.display.set_caption(title)
 
+        self.log = GameLogger()
+        if "logger" in kwargs:
+            self.log = kwargs["logger"]
+
+        self.log("Game started")
+
     def setup_ducks(self, duck_amount: int = 10) -> list:
         """Sets up duck sprite on the game window"""
 
         # Set ducks per row
-        # ? Can be optimized, spaggheti
+        # ? Can be optimized, spaghetti
         rows = ["duck_right", "duck_left"]
         increments = [self.duck_width, -self.duck_width]
         positions = [
@@ -92,25 +101,32 @@ class Game:
 
         # Exit safely the game on QUIT
         if event.type == pygame.QUIT:
+            self.log("Quitting game...")
             raise PygameQuit("Exit the game loop.")
 
         # TODO handle duck click
         return
 
-    def start_background_music(self) -> None:
+    def start_background_music(self) -> None:  # pragma: no cover
         """Starts the background song"""
 
         pygame.mixer.init()
         pygame.mixer.music.load(self.settings["background_music"])
         pygame.mixer.music.play(-1)
 
-    def stop_background_music(self) -> None:
+        self.log("Started background music")
+
+    def stop_background_music(self) -> None:  # pragma: no cover
         """Stop playing background music"""
 
         pygame.mixer.music.stop()
 
+        self.log("Stopped background music")
+
     def start(self) -> None:  # pragma: no cover
         """Starts the game loop"""
+
+        self.log("Started game")
 
         # Set start time
         self.start_time = time.time()
@@ -152,7 +168,8 @@ class Game:
 def main() -> None:  # pragma: no cover
     """Main method to start the game"""
 
-    game = Game()
+    logger = GameLogger()
+    game = Game(logger=logger)
     game.start()
 
 
